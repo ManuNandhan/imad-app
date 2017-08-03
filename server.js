@@ -11,7 +11,7 @@ var articleOne = {
   heading: 'Article one',
   date: 'Aug 8, 2017',
   content: `<p>
-        This is the content !
+        This is the A1 content !
                 This is the content !
                         This is the content !
                                 This is the content !
