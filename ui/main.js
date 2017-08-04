@@ -43,7 +43,7 @@
  
  //Add Name
  var nameInput = document.getElementById('name');
- var nameadd = nameInput.value;
+ var name = nameInput.value;
  var submit = document.getElementById('submit_btn');
  submit.onclick = function(){
      
