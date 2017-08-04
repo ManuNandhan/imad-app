@@ -97,9 +97,9 @@ var htmlTemplate = `
         ${heading}
     </h1>
     <div>
-       ${date}
+        ${date}
     </div>
-    ${content}
+        ${content}
     </div>
     </body>
     </html>`;
