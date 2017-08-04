@@ -42,19 +42,37 @@
  };
  
  //Add Name
- var nameInput = document.getElementById('name');
- var name = nameInput.value;
+
  var submit = document.getElementById('submit_btn');
  submit.onclick = function(){
+      var nameInput = document.getElementById('name');
+      var name = nameInput.value;
+     var request = new XMLHttpRequest();
      
-     var names = ['manu', 'vinoth', 'sanjay', 'abi', 'naveen'];
-     var list = '';
-     for (var i = 0; i < names.length; i++){
-         list += '<li>' + names[i] + '</li>';
-     }
+     request.onreadystatechange = function(){
+         
+         if(request.readyState === XMLHttpRequest.DONE){
+             if(request.status == 200){
+                  var names = request.responseText;
+                  names = JSON.parse(names);
+                  var list = '';
+                  for (var i = 0; i < names.length; i++){
+                  list += '<li>' + names[i] + '</li>';
+                  }
      
-     var ul = document.getElementById('namelist');
-     ul.innerHTML = list;
+                  var ul = document.getElementById('namelist');
+                  ul.innerHTML = list;
+             }
+         }
+         
+     };
+     
+     
+     request.open('GET', 'http://manunandhanmn.imad.hasura-app.io/submit-name' + name, true);
+     request.send(null);
+     
+     
+    
  };
  
  
