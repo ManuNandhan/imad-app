@@ -15,70 +15,70 @@ var config = {
 };
 
 
-var articles = {
-'article-one': {
-  title: 'Article one | Manu'  ,
-  heading: 'Article one',
-  date: 'Aug 8, 2017',
-  content: `<p>
-        This is the A1 content !
-                This is the content !
-                        This is the content !
-                                This is the content !
+// var articles = {
+// 'article-one': {
+//   title: 'Article one | Manu'  ,
+//   heading: 'Article one',
+//   date: 'Aug 8, 2017',
+//   content: `<p>
+//         This is the A1 content !
+//                 This is the content !
+//                         This is the content !
+//                                 This is the content !
         
-    </p><br>
-    <p>
-        This is the content !
-                This is the content !
-                        This is the content !
-                                This is the content !
+//     </p><br>
+//     <p>
+//         This is the content !
+//                 This is the content !
+//                         This is the content !
+//                                 This is the content !
         
-    </p>`
+//     </p>`
   
-},
-'article-two': {
-  title: 'Article two | Manu'  ,
-  heading: 'Article two',
-  date: 'Aug 9, 2017',
-  content: `<p>
-        This is the A2 content !
-                This is the content !
-                        This is the content !
-                                This is the content !
+// },
+// 'article-two': {
+//   title: 'Article two | Manu'  ,
+//   heading: 'Article two',
+//   date: 'Aug 9, 2017',
+//   content: `<p>
+//         This is the A2 content !
+//                 This is the content !
+//                         This is the content !
+//                                 This is the content !
         
-    </p><br>
-   `
+//     </p><br>
+//   `
   
-},
-'article-three': {
-  title: 'Article three | Manu'  ,
-  heading: 'Article three',
-  date: 'Aug 10, 2017',
-  content: `<p>
-        This is the A3 content !
-                This is the content !
-                        This is the content !
-                                This is the content !
+// },
+// 'article-three': {
+//   title: 'Article three | Manu'  ,
+//   heading: 'Article three',
+//   date: 'Aug 10, 2017',
+//   content: `<p>
+//         This is the A3 content !
+//                 This is the content !
+//                         This is the content !
+//                                 This is the content !
         
-    </p><br>
-   <p>
-        This is the content !
-                This is the content !
-                        This is the content !
-                                This is the content !
+//     </p><br>
+//   <p>
+//         This is the content !
+//                 This is the content !
+//                         This is the content !
+//                                 This is the content !
         
-    </p>
-  <p>
-        This is the content !
-                This is the content !
-                        This is the content !
-                                This is the content !
+//     </p>
+//   <p>
+//         This is the content !
+//                 This is the content !
+//                         This is the content !
+//                                 This is the content !
         
-    </p>`
+//     </p>`
   
   
-},
-};
+// },
+// };
 
 function createTemplate(data){
     var title = data.title;
@@ -150,12 +150,12 @@ app.get('/articles/:articleName', function (req, res){
     //articleName = article-one
     //var articleName = req.params.articleName;
     
-    pool.query("SELECT * FROM article WHERE title = '" + req.params.articleName + "'", function(err, result){
+    pool.query("SELECT * FROM article WHERE title = $1", [req.params.articleName], function(err, result){
          if(err){
            res.status(500).send(err.toString());
        } else {
           if (result.row.length === 0) {
-              res.status(404).send('Artcile not found');
+              res.status(404).send('Artcile not found'); 
           }else{
               var articleData = result.rows[0];
                res.send(createTemplate(articleData));
